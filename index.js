@@ -139,6 +139,31 @@ window.addEventListener('touchend', e => {
         handleInput(dy > 0 ? "ArrowDown" : "ArrowUp");
     }
 });
+function handleTouch(dx, dy) {
+    if (Math.abs(dx) > Math.abs(dy)) {
+        handleInput(dx > 0 ? "ArrowRight" : "ArrowLeft");
+    } else {
+        handleInput(dy > 0 ? "ArrowDown" : "ArrowUp");
+    }
+}
+
+window.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+});
+
+window.addEventListener('touchend', e => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+
+    const dx = touchEndX - touchStartX;
+    const dy = touchEndY - touchStartY;
+
+    handleTouch(dx, dy);
+});
+
+
+
 
 
 
