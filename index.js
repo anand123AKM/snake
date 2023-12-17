@@ -9,7 +9,7 @@ let lastpainttime=0;
 let snakearr = [
     { x: 13, y: 15}
 ]
-food = {x: 7, y: 5};
+food = {x: 7, y: 5};                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 function main(ctime){
     window.requestAnimationFrame(main);
    // console.log(ctime)
@@ -104,6 +104,44 @@ else{
 
 
 window.requestAnimationFrame(main);
+
+
+
+
+
+
+
+
+window.addEventListener('keydown', e => {
+    handleInput(e.key);
+});
+
+
+let touchStartX, touchStartY;
+
+window.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+});
+
+window.addEventListener('touchend', e => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+
+    const dx = touchEndX - touchStartX;
+    const dy = touchEndY - touchStartY;
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+      
+        handleInput(dx > 0 ? "ArrowRight" : "ArrowLeft");
+    } else {
+   
+        handleInput(dy > 0 ? "ArrowDown" : "ArrowUp");
+    }
+});
+
+
+
 window.addEventListener('keydown', e=> {
     inputd = {x:0, y:1}
     movesound.play();
